@@ -1,9 +1,16 @@
-var express = require('express');
-var router = express.Router();
+const connectToMongo = require('./db');
+const express = require('express');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+connectToMongo();
 
-module.exports = router;
+
+const app = express()
+const port = 4000
+
+app.get('/', (req, res) => {
+  res.send('Hello Ambar!')
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
